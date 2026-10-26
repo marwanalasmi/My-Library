@@ -1,0 +1,188 @@
+/* Advanced Formatting — settings-pane styling.
+ *
+ * These rules replace what used to be set inline from code (element.style.*)
+ * — moved here so themes/CSS snippets can override them, and so nothing in
+ * the plugin sets styles directly from JS. Note-content styling (roles,
+ * headings, footnotes, direction/alignment overrides) is NOT here — that's
+ * generated dynamically per-profile in stylesheet.ts, since it's built from
+ * live user configuration (colors, fonts, custom CSS) rather than fixed
+ * layout, and is applied to an adopted CSSStyleSheet at runtime.
+ */
+
+.af-profile-status {
+	font-size: 0.85em;
+	opacity: 0.75;
+	margin-top: -8px;
+}
+
+.af-role-row {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	gap: 10px;
+	padding: 6px 4px;
+	border-bottom: 1px solid var(--background-modifier-border);
+}
+
+.af-role-title-input {
+	flex: 1 1 auto;
+	min-width: 0;
+}
+
+.af-role-row-controls {
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	flex: 0 0 auto;
+}
+
+.af-snippet-help {
+	max-width: 760px;
+	margin: 0 0 8px;
+}
+
+.af-snippet-examples {
+	display: block;
+	max-width: 760px;
+	padding: 10px 12px;
+	margin: 0 0 12px;
+	white-space: pre-wrap;
+	font-family: var(--font-monospace);
+	font-size: var(--font-small);
+	line-height: 1.5;
+	color: var(--text-muted);
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-s);
+}
+
+.af-snippet-card {
+	display: grid;
+	grid-template-columns: minmax(150px, 1fr) minmax(240px, 2fr) auto;
+	align-items: center;
+	gap: 10px;
+	max-width: 900px;
+	padding: 10px;
+	margin: 0 0 8px;
+	background: var(--background-secondary);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: var(--radius-m);
+}
+
+.af-snippet-card .setting-item,
+.af-snippet-card .setting-editor-extra-setting {
+	min-width: 0;
+	margin: 0;
+	padding: 0;
+	border: 0;
+}
+
+.af-snippet-card .setting-item-control {
+	width: 100%;
+}
+
+.af-snippet-card .af-snippet-name,
+.af-snippet-card .af-snippet-css {
+	box-sizing: border-box;
+	width: 100%;
+}
+
+.af-snippet-card .af-snippet-css {
+	min-height: 64px;
+	resize: vertical;
+}
+
+.af-snippet-remove {
+	justify-self: center;
+}
+
+.af-format-custom-color-visible {
+	display: inline-block;
+}
+
+.af-format-popover-row input[type="color"]:not(.af-format-custom-color-visible) {
+	display: none;
+}
+
+@media (max-width: 600px) {
+	.af-snippet-card {
+		grid-template-columns: 1fr auto;
+	}
+
+	.af-snippet-card .af-snippet-name,
+	.af-snippet-card .af-snippet-css {
+		grid-column: 1 / -1;
+	}
+
+	.af-snippet-remove {
+		grid-column: 2;
+		grid-row: 1;
+	}
+}
+
+.af-hidden {
+	display: none;
+}
+
+.af-backup-textarea-export,
+.af-backup-textarea-import {
+	width: 100%;
+	font-family: var(--font-monospace);
+}
+
+.af-backup-textarea-export {
+	height: 300px;
+}
+
+.af-backup-textarea-import {
+	height: 250px;
+}
+
+.af-color-swatch {
+	display: inline-block;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	margin-right: 8px;
+	vertical-align: middle;
+	background-color: var(--af-swatch-color);
+	border: 1px solid var(--background-modifier-border);
+}
+
+.af-format-popover {
+	position: fixed;
+	left: var(--af-popover-left, 12px);
+	top: var(--af-popover-top, 120px);
+	z-index: 1000;
+	width: 340px;
+	max-height: min(520px, calc(100vh - 24px));
+	overflow-y: auto;
+	padding: 12px;
+	background: var(--background-primary);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 8px;
+	box-shadow: 0 8px 28px rgba(0, 0, 0, 0.35);
+}
+
+.af-format-popover-header,
+.af-format-popover-row,
+.af-format-popover-actions,
+.af-format-popover-css-buttons {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+
+.af-format-popover-header { justify-content: space-between; margin-bottom: 8px; }
+.af-format-popover-close { border: 0; background: transparent; font-size: 20px; cursor: pointer; }
+.af-format-popover-row { min-height: 32px; }
+.af-format-popover-row label { flex: 1; }
+.af-format-popover-row input[type="number"] { width: 72px; }
+.af-format-popover-row input[type="color"] { width: 28px; height: 24px; padding: 0; }
+.af-format-popover-css { margin-top: 8px; }
+.af-format-popover-css label { display: block; margin-bottom: 4px; }
+.af-format-popover-css-buttons { margin-bottom: 4px; }
+.af-format-popover-textarea { width: 100%; min-height: 48px; resize: vertical; }
+.af-format-popover-preview { margin-top: 10px; padding: 8px; border-top: 1px solid var(--background-modifier-border); }
+.af-format-popover-preview .af-format-preview { display: inline-block; margin-left: 8px; }
+.af-format-popover-actions { justify-content: flex-end; margin-top: 10px; }
